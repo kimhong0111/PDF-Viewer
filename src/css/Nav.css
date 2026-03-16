@@ -1,0 +1,8 @@
+
+.nav .navHeader {
+    display: flex;
+    flex-direction:row;
+    gap:20px;
+    font-size:30px;
+    border:1px solid wheat;
+}
