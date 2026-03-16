@@ -10,10 +10,10 @@ export default function App() {
    <BrowserRouter>
     <Layout>
      <Routes>
-    <Route  path="/" element={<Home />} />
-    <Route   path="/upload" element={<UploadPage />}  />
-   </Routes>
-   </Layout>
+      <Route  path="/" element={<Home />} />
+      <Route   path="/upload" element={<UploadPage />}  />
+     </Routes>
+    </Layout>
    </BrowserRouter>
   );
 }
