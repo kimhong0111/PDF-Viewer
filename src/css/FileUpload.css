@@ -1,37 +1,116 @@
-.container {
-  width:500px;
-  height:500px;
-  margin: 40px auto;
-  border-radius: 25px;
-  border: 1px solid black;
-  background-color: aliceblue;
-  padding: 30px 20px;
-}
-
-.container h1 {
-  font-size: 25px;
-  color: black;
-}
-
-.container .uploadFile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* ─────────────── UPLOAD PAGE ─────────────── */
+.upload-page {
+  min-height: 100vh; padding-top: 60px;
+  display: flex; flex-direction: column; align-items: center;
   justify-content: center;
-  border: 1px solid black;
-  border-radius: 10px;
-  width: 300px;
-  height: 150px;
-  margin: 20px auto;
+  padding: 60px 24px 80px;
 }
 
-.container input[type="file"] {
-  margin-top: 20px;
-  margin-left: 175px;
-  font-size: 15px;
-  color: transparent;
+.upload-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-3);
+  margin-bottom: 18px;
+}
+.upload-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 5vw, 52px);
+  line-height: 1.08; letter-spacing: -1px;
+  color: var(--ink); text-align: center;
+  margin-bottom: 14px;
+}
+.upload-heading em { font-style: italic; color: var(--accent-warm); }
+.upload-sub {
+  font-size: 15px; font-weight: 300; color: var(--ink-2);
+  text-align: center; max-width: 380px; line-height: 1.6;
+  margin-bottom: 48px;
 }
 
-.fileCard {
-  font-size:25px;
+/* Drop zone */
+.dropzone {
+  width: 100%; max-width: 560px;
+  border: 1.5px dashed var(--surface-3);
+  border-radius: 20px;
+  padding: 56px 40px;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  cursor: pointer; transition: border-color 0.2s, background 0.2s;
+  background: white; position: relative;
+}
+.dropzone:hover, .dropzone.drag-over {
+  border-color: var(--ink-3);
+  background: var(--surface);
+}
+
+.dz-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--surface-2); display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s;
+}
+.dropzone:hover .dz-icon { transform: translateY(-2px); }
+.dz-icon svg { width: 22px; height: 22px; color: var(--ink-2); }
+
+.dz-label {
+  font-size: 15px; font-weight: 500; color: var(--ink);
+  text-align: center;
+}
+.dz-sub {
+  font-size: 13px; color: var(--ink-3); text-align: center; line-height: 1.5;
+}
+.dz-sub span { color: var(--accent-warm); font-weight: 500; cursor: pointer; }
+
+.dz-divider {
+  width: 100%; display: flex; align-items: center; gap: 12px; margin: 4px 0;
+}
+.dz-divider::before, .dz-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--line);
+}
+.dz-divider span { font-size: 12px; color: var(--ink-3); }
+
+/* Info pills */
+.upload-pills {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  margin-top: 36px;
+}
+.upload-pill {
+  font-size: 12.5px; color: var(--ink-2); font-weight: 400;
+  padding: 6px 14px; border-radius: 100px;
+  border: 1px solid var(--surface-3); background: white;
+  display: flex; align-items: center; gap: 6px;
+}
+.upload-pill svg { width: 13px; height: 13px; opacity: 0.5; }
+
+/* File selected state */
+.file-selected {
+  width: 100%; max-width: 560px;
+  background: white; border: 1px solid var(--line);
+  border-radius: 16px; padding: 20px 24px;
+  display: flex; align-items: center; gap: 16px;
+}
+.file-icon {
+  width: 44px; height: 44px; background: #fef0eb;
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.file-icon svg { width: 20px; height: 20px; color: var(--accent-warm); }
+.file-info { flex: 1; min-width: 0; }
+.file-name { font-size: 14px; font-weight: 500; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file-size { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+.btn-view {
+  font-family: var(--font-sans); font-size: 13.5px; font-weight: 500;
+  padding: 9px 20px; border-radius: 10px; cursor: pointer;
+  background: var(--ink); color: white; border: none;
+  white-space: nowrap; transition: background 0.15s, transform 0.1s;
+  flex-shrink: 0;
+}
+.btn-view:hover { background: #333; transform: translateY(-1px); }
+.btn-remove {
+  background: none; border: none; cursor: pointer;
+  color: var(--ink-3); padding: 6px; border-radius: 6px;
+  transition: color 0.15s, background 0.15s; flex-shrink: 0;
+}
+.btn-remove:hover { color: var(--ink); background: var(--surface-2); }
+.btn-remove svg { width: 16px; height: 16px; display: block; }
+
+@media (max-width: 680px) {
+  .upload-heading { font-size: 32px; }
+  .dropzone { padding: 40px 24px; }
 }
