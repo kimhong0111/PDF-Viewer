@@ -10,7 +10,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url,
 ).toString();
 
-export function PDFViewer({ file, zoom = 100, onLoadSuccess }) {
+export function PDFViewer({ file, zoom = 100, currentPage = 1, onLoadSuccess }) {
   const [numPages, setNumPages] = useState(null);
 
   // Store total page count and notify parent
@@ -26,14 +26,14 @@ export function PDFViewer({ file, zoom = 100, onLoadSuccess }) {
   return (
     // Render all pages sequentially inside styled wrappers
     <Document file={file} onLoadSuccess={handleLoadSuccess}>
-      {numPages && Array.from({ length: numPages }, (_, i) => (
-        <div key={`page-${i + 1}`} className="pdf-page-wrap" style={{ maxWidth: pageWidth, marginBottom: 16 }}>
+      {numPages && (
+        <div className="pdf-page-wrap" style={{ maxWidth: pageWidth, marginBottom: 16 }}>
           <Page
-            pageNumber={i + 1}
+            pageNumber={currentPage}
             width={pageWidth}
           />
         </div>
-      ))}
+      )}
     </Document>
   );
 }
