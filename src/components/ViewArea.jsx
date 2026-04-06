@@ -1,8 +1,23 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";          // 👈 make sure this is imported
 import { Icon } from "./Icons";
 import { PDFViewer } from "./PDFViewer.jsx";
 
 export function ViewArea({ selectedPdf, currentPage, totalPages, zoom, setCurrentPage, setZoom, setTotalPages }) {
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === "ArrowLeft") {
+        setCurrentPage((p) => Math.max(1, p - 1));
+      }
+      if (e.key === "ArrowRight") {
+        setCurrentPage((p) => Math.min(totalPages || 1, p + 1));
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [totalPages]);
+
   if (!selectedPdf) {
     return (
       <div className="home-empty">
@@ -45,8 +60,7 @@ export function ViewArea({ selectedPdf, currentPage, totalPages, zoom, setCurren
           </button>
         </div>
       </div>
-
-      <div className="viewer-canvas">
+      <div className="viewer-canvas" style={{ overflowY: "auto", height: "calc(100vh - 60px)" }}>
         <PDFViewer file={selectedPdf} zoom={zoom} currentPage={currentPage} onLoadSuccess={setTotalPages} />
       </div>
     </>
